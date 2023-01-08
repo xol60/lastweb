@@ -15,22 +15,6 @@ function* fetchGroupsSaga(action) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function* createGroupSaga(action) {
   try {
     const group = yield call(api.createGroup, action.payload);
@@ -51,12 +35,21 @@ function* fetchMembersSaga(action) {
   }
 }
 
-
+function * loginMemberSaga (action){
+    try {
+      const group = yield call(api.loginMember, action.payload);
+      yield put(actions.loginMember.loginMemberSucess(group.data));
+    } catch (err) {
+      console.error(err);
+      yield put(actions.loginMember.loginMemberFailure(err));
+    }
+}
 
 
 function* mySaga() {
   yield takeLatest(actions.getGroups.getGroupsRequest, fetchGroupsSaga);
   yield takeLatest(actions.createGroup.createGroupRequest, createGroupSaga);
+  yield takeLatest(actions.loginMember.loginMemberRequest, loginMemberSaga);
   yield takeLatest(actions.getMembers.getMembersRequest,fetchMembersSaga);
  
 }

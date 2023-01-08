@@ -4,8 +4,9 @@ import cors from 'cors';
 import customers from './routers/customers.js'
 import mongoose from 'mongoose';
 import groups from './routers/groups.js'
-
-const URI='mongodb://localhost:27017/PTUDW';
+import dotenv from 'dotenv'
+dotenv.config();
+const URI=process.env.MONGO_URL;
 
 const app=express();
 const PORT=process.env.port||5000;
@@ -15,8 +16,8 @@ app.use(bodyParser.urlencoded({extended:true,limit:'30mb'}));
 app.use(cors());
 
 app.use('/customers',customers)
-app.use('/groups',groups)
-app.use('/members',members)
+app.use('/groups',groups);
+
 
 mongoose.connect(URI,{useNewUrlParser:true,useUnifiedTopology:true})
     .then(()=>{
