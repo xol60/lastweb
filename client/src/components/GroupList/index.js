@@ -17,7 +17,7 @@ export default function GroupList() {
   return (
     <Grid container spacing={2} alignItems='stretch'>
       {groups.map((group) => (
-        <Grid key={group._id} item xs={12} sm={6}>
+        <Grid key={group._id} item xs={12} sm={12}>
           <Group group={group} />
         </Grid>
       ))}

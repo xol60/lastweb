@@ -11,20 +11,19 @@ import {
   IconButton,
   Typography,
 } from '@mui/material';
-import MoreVertIcon from '@mui/icons-material/MoreVert'
-import FavoriteIcon from '@mui/icons-material/Favorite';
 
 
-import { useDispatch } from 'react-redux';
+
+
 import { useNavigate } from "react-router-dom";
 
-export default function Group({ group }) {
+export default function Presentation({ presentation }) {
   
   
   const navigate = useNavigate();
 
   const goToClass = () => {
-    navigate(`/${group._id}`);
+    navigate(`/${presentation._id}`);
   };
 
   
@@ -32,25 +31,25 @@ export default function Group({ group }) {
   return (
     <Card>
       
-      <CardHeader style={{backgroundColor: "#106de7"}}
-        avatar={<Avatar>G</Avatar>}
-        title={<Link underline='hover' color='white'  onClick={goToClass} variant='h4' >{group.name}</Link>}
+      <CardHeader style={{backgroundColor: "purple"}}
+        avatar={<Avatar>P</Avatar>}
+        title={<Link underline='hover' color='white'  onClick={goToClass} variant='h4' >{presentation.name}</Link>}
        
         
       />
       
       
       <CardMedia
-        image={group.avatar || ''}
+        image={presentation.avatar || ''}
         title='Title'
         
       />
       <CardContent>
         <Typography variant='h5' color='textPrimary'>
-          {group.password}
+          {presentation.password}
         </Typography>
         <Typography variant='body2' component='p' color='textSecondary'>
-          {group.email}
+          {presentation.email}
         </Typography>
       </CardContent>
       <CardActions>

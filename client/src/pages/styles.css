@@ -83,3 +83,13 @@
     color: white;
     text-decoration: underline;
   }
+  .d6CWTd:first-child {
+    border-top: 0;
+}
+.d6CWTd {
+  border-top: 0.0625rem solid rgb(218,220,224);
+  height: 3.75rem;
+}
+* {
+  -webkit-tap-highlight-color: transparent;
+}

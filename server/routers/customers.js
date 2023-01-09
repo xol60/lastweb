@@ -1,8 +1,6 @@
 import express from "express";
-import { addCus,getCus,loginCus } from "../controllers/customer.js";
-import {verifyTokenOwner,verifyToken} from "../controllers/verifyToken.js";
+import { addCus,getCus } from "../controllers/customer.js";
 const router=express.Router();
-router.post('/login',loginCus);
 router.post('/',addCus);
-router.get('/',verifyToken,getCus);
+router.get('/',getCus);
 export default router;

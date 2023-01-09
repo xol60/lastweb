@@ -5,7 +5,7 @@ import './styles.css'
 import AddIcon from '@mui/icons-material/Add'
 import Header from '../components/Header';
 import GroupList from '../components/GroupList';
-import { spacing } from '@mui/system';
+
 import { useDispatch } from 'react-redux';
 import CreateGroupModal from '../components/CreateGroupModal';
 import { showModal } from '../redux/actions';
@@ -20,9 +20,15 @@ function Groups() {
   }, [dispatch]);
 
   return (
+  
+      
+    
+    
     <div className="app">
+      <Header></Header>
+   
     <Container maxWidth='lg' >
-      <Header />
+ 
       <GroupList />
       <CreateGroupModal />
       <div style={{position:'fixed',bottom:30,right:30}}><Fab

@@ -9,6 +9,17 @@ export const INIT_STATE = {
     members:{
       isLoading:false,
       data:[],
-    }
+    },
+    memberModal:{
+      isShow:false,
+    },
+    presentations: {
+      isLoading: false,
+      data: [],
+    },
+    presentationModal:{
+      isLoading: false,
+      data: [],
+    },
     
   };
