@@ -9,7 +9,7 @@ import { spacing } from '@mui/system';
 export default function CreateGroupModal() {
   const [data, setData] = React.useState({
     groupname: '',
-    
+    title:''
     
   });
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ export default function CreateGroupModal() {
     dispatch(hideModal());
     setData({
       groupname: '',
-      
+      title:''
       
     });
   }, [dispatch]);
@@ -48,6 +48,13 @@ export default function CreateGroupModal() {
           label='Group name(Required)'
           value={data.groupname}
           onChange={(e) => setData({ ...data, groupname: e.target.value })}
+        />
+        <TextField
+          style={{marginBottom: '10px'}}
+          
+          label='Title'
+          value={data.title}
+          onChange={(e) => setData({ ...data, title: e.target.value })}
         />
         
         

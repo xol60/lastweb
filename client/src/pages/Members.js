@@ -8,12 +8,13 @@ import AddIcon from '@mui/icons-material/Add'
 import { Container, Fab } from '@mui/material';
 import { showMemberModal } from '../redux/actions';
 import AddMemberModal from '../components/AddMemberModal';
-import Header from '../components/Header';
+import MemberList from '../components/MemberList';
+
 function Members(){
     const dispatch = useDispatch();
-  const members = useSelector(membersState$);
+  
   let id=useParams();
-  const a=false;
+  const a=true;
   
 
   React.useEffect(() => {
@@ -32,6 +33,7 @@ function Members(){
                 Members
             </h2>
         </div>
+        <MemberList />
       {a?(
       <>
      

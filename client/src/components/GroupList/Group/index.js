@@ -61,17 +61,13 @@ export default function Group({ group }) {
       />
       
       
-      <CardMedia
-        image={group.avatar || ''}
-        title='Title'
-        
-      />
+      
       <CardContent>
         <Typography variant='h5' color='textPrimary'>
-          {group.password}
+          {group.title}
         </Typography>
         <Typography variant='body2' component='p' color='textSecondary'>
-          {group.email}
+          
         </Typography>
       </CardContent>
       <CardActions>

@@ -1,20 +1,15 @@
-import { Customer } from "../models/Customer.js";
+import { Group } from "../models/Group.js";
 export const addGroup=async (req,res)=>{
     try {
         
-        const customer=new Customer({
+        const group=new Group({
             
             name:req.body.groupname,
-            email:'req.body.email',
-            username:'req.body.username',
-            address:'',
-            lock:false,
-            password:'randomstring',
-            avatar:'https://scr.vn/wp-content/uploads/2020/07/avt-cute.jpg.webp',
+            title:req.body.title
 
         });
-        await customer.save()
-        res.status(200).json(customer)
+        await group.save()
+        res.status(200).json(group)
     
         
         
@@ -28,10 +23,10 @@ export const deleteGroup=async (req,res)=>{
   try {
       
     console.log(req.body._id)
-    const customer=await Customer.find({_id:req.body._id})
-    const cus =  await Customer.deleteOne({_id:req.body._id})
-    console.log(customer)
-    res.status(200).json(customer)
+    const group=await Group.find({_id:req.body._id})
+    const g =  await Group.deleteOne({_id:req.body._id})
+   
+    res.status(200).json(group)
   
       
       
@@ -40,4 +35,13 @@ export const deleteGroup=async (req,res)=>{
     } catch (err) {
       res.status(500).json({ error: err });
     }
+}
+export const getGroups=async (req,res)=>{
+  try {
+      const Groups=await Group.find();
+      res.status(200).json(Groups);
+      
+  } catch (err) {
+      res.status(500).json({error:err});
+  }
 }

@@ -11,11 +11,13 @@ import {
   IconButton,
   Typography,
 } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 
-
+import { useDispatch } from 'react-redux';
 
 import { useNavigate } from "react-router-dom";
+import { deletePresentation } from '../../../redux/actions';
 
 export default function Presentation({ presentation }) {
   
@@ -25,6 +27,21 @@ export default function Presentation({ presentation }) {
   const goToClass = () => {
     navigate(`/${presentation._id}`);
   };
+  const [data, setData] = React.useState({
+    _id:'',
+    
+  });
+  const dispatch = useDispatch();
+  
+  const a=true;
+  
+  const onDelete = React.useCallback(() => {
+   
+    data._id=presentation._id
+    
+    dispatch(deletePresentation.deletePresentationRequest(data));
+    
+  }, [data, dispatch]);
 
   
 
@@ -34,6 +51,16 @@ export default function Presentation({ presentation }) {
       <CardHeader style={{backgroundColor: "purple"}}
         avatar={<Avatar>P</Avatar>}
         title={<Link underline='hover' color='white'  onClick={goToClass} variant='h4' >{presentation.name}</Link>}
+        action=
+        {a?(
+        <>
+        {
+          <IconButton onClick={onDelete}>
+            <DeleteIcon></DeleteIcon>
+          </IconButton>
+        }
+        </>
+      ):null}
        
         
       />

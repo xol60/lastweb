@@ -66,11 +66,33 @@ function* deleteGroupSaga(action) {
   try {
     
     const group = yield call(api.deleteGroup, action.payload);
-   console.log(group.data)
+   
     yield put(actions.deleteGroup.deleteGroupSuccess(group.data));
   } catch (err) {
     console.error(err);
     yield put(actions.deleteGroup.deleteGroupFailure(err));
+  }
+}
+function* deleteMemberSaga(action) {
+  try {
+    
+    const member = yield call(api.deleteMember, action.payload);
+   
+    yield put(actions.deleteMember.deleteMemberSuccess(member.data));
+  } catch (err) {
+    console.error(err);
+    yield put(actions.deleteMember.deleteMemberFailure(err));
+  }
+}
+function* deletePresentationSaga(action) {
+  try {
+    
+    const presentation = yield call(api.deletePresentation, action.payload);
+   
+    yield put(actions.deletePresentation.deletePresentationSuccess(presentation.data));
+  } catch (err) {
+    console.error(err);
+    yield put(actions.deletePresentation.deletePresentationFailure(err));
   }
 }
 
@@ -86,6 +108,8 @@ function* mySaga() {
   yield takeLatest(actions.addMember.addMemberRequest,addMemberSaga);
   yield takeLatest(actions.getPresentations.getPresentationsRequest, fetchPresentationsSaga);
   yield takeLatest(actions.deleteGroup.deleteGroupRequest,deleteGroupSaga);
+  yield takeLatest(actions.deleteMember.deleteMemberRequest,deleteMemberSaga);
+  yield takeLatest(actions.deletePresentation.deletePresentationRequest,deletePresentationSaga);
  
 }
 

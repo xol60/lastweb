@@ -14,7 +14,8 @@ import { showPresentationModal } from '../redux/actions';
 import Header from '../components/Header';
 
 function Presentations() {
-
+  
+    const a=true;
     const dispatch = useDispatch();
     const openCreatePresentationModal = React.useCallback(() => {
         dispatch(showPresentationModal());
@@ -26,6 +27,8 @@ function Presentations() {
       <Container maxWidth='lg' >
         <Header></Header>
         <PresentationList />
+        {a?(
+      <>
         <CreatePresentationModal />
       <div style={{position:'fixed',bottom:30,right:30}}><Fab
         color='primary'
@@ -36,6 +39,8 @@ function Presentations() {
         <AddIcon />
       </Fab>
       </div>
+      </>
+      ):null}
         
         
       </Container>
