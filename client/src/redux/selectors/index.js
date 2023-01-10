@@ -12,4 +12,4 @@ export const memberModalState$=(state)=>state.memberModal;
 
 export const presentationModalStates$=(state)=>state.presentationModal;
 
-export const customerState$=(state)=>state.customer.data;
+export const customerState$=(state) => state.customer;

@@ -5,8 +5,8 @@ import './styles.css'
 import AddIcon from '@mui/icons-material/Add'
 import Header from '../components/Header';
 import GroupList from '../components/GroupList';
-
-import { useDispatch } from 'react-redux';
+import {customerState$} from '../redux/selectors'
+import { useDispatch,useSelector } from 'react-redux';
 import CreateGroupModal from '../components/CreateGroupModal';
 import { showModal } from '../redux/actions';
 
@@ -14,11 +14,11 @@ import { showModal } from '../redux/actions';
 function Groups() {
 
   const dispatch = useDispatch();
-
+  const {info}=useSelector(customerState$)
   const openCreateGroupModal = React.useCallback(() => {
     dispatch(showModal());
   }, [dispatch]);
-
+  console.log(info);
   return (
   
       

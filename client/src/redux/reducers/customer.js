@@ -10,11 +10,14 @@ export default function membersReducers(state = INIT_STATE.customer, action) {
       
       };
     case getType(loginCustomer.loginCustomerSuccess):
+        {
+
       return {
         ...state,
         isLoading: false,
-        data: action.payload,
+        info: action.payload,
       };
+    }
     case getType(loginCustomer.loginCustomerFailure):
       return {
         ...state,
