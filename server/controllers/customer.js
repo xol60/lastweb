@@ -2,8 +2,6 @@
 import { Customer } from "../models/Customer.js";
 import { check } from "../util/mongoose.js";
 import nodemailer from 'nodemailer'
-import jwt from 'jsonwebtoken';
-import argon2 from 'argon2';
 export const addCus=async (req,res)=>{
     try {
         Customer.find({})
@@ -37,7 +35,7 @@ export const addCus=async (req,res)=>{
                     subject:'Web 2',
                     text:'Your password is '+ randomstring
                 }
-                transporter.sendMail(mailOptions,async function(err,data){
+                transporter.sendMail(mailOptions,function(err,data){
                     if(err){
                         console.log('error occurs:',err)
                         res.send({"name":"Email bạn điền không tồn tại"});
@@ -48,14 +46,13 @@ export const addCus=async (req,res)=>{
                     }
                     else{
                         console.log('email sent')
-                        const hashedPassword = await argon2.hash(randomstring)
                         const customer=new Customer({
                             name:req.body.name,
                             email:req.body.email,
                             username:req.body.username,
                             address:'',
                             lock:false,
-                            password:hashedPassword,
+                            password:randomstring,
                             avatar:'https://scr.vn/wp-content/uploads/2020/07/avt-cute.jpg.webp',
                 
                         });
@@ -87,48 +84,6 @@ export const addCus=async (req,res)=>{
     } catch (err) {
         res.status(500).json({error:err});
     }
-}
-export const logCus=async (req,res)=>{
-    const { username, password } = req.body
-
-	// Simple validation
-	if (!username || !password)
-		return res
-
-			.json({name: 'Missing username and/or password' })
-
-	try {
-		// Check for existing user
-		const user = await Customer.findOne({ username })
-		if (!user)
-			return res
-	
-				.json({ name: 'Incorrect username or password' })
-
-		// Username found
-		const passwordValid = await argon2.verify(user.password, password)
-		if (!passwordValid)
-			return res
-
-				.json({ name: 'Incorrect username or password' })
-
-		// All good
-		// Return token
-		const accessToken = jwt.sign(
-			{ userId: user._id },
-			process.env.ACCESS_TOKEN_SECRET
-		)
-
-		res.json({
-
-			name: 'User logged in successfully',
-            id:user._id,
-			accessToken
-		})
-	} catch (error) {
-		console.log(error)
-		res.status(500).json({ success: false, message: 'Internal server error' })
-	}
 }
 export const getCus=async (req,res)=>{
     try {

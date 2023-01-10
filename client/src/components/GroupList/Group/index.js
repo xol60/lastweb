@@ -11,21 +11,32 @@ import {
   IconButton,
   Typography,
 } from '@mui/material';
-import MoreVertIcon from '@mui/icons-material/MoreVert'
-import FavoriteIcon from '@mui/icons-material/Favorite';
-
+import DeleteIcon from '@mui/icons-material/Delete';
 
 import { useDispatch } from 'react-redux';
+
 import { useNavigate } from "react-router-dom";
+import { deleteGroup } from '../../../redux/actions';
 
 export default function Group({ group }) {
   
-  
+  const [data, setData] = React.useState({
+    _id:'',
+    
+  });
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const a=true;
   const goToClass = () => {
     navigate(`/${group._id}`);
   };
+  const onDelete = React.useCallback(() => {
+   
+    data._id=group._id
+    
+    dispatch(deleteGroup.deleteGroupRequest(data));
+    
+  }, [data, dispatch]);
 
   
 
@@ -35,6 +46,16 @@ export default function Group({ group }) {
       <CardHeader style={{backgroundColor: "#106de7"}}
         avatar={<Avatar>G</Avatar>}
         title={<Link underline='hover' color='white'  onClick={goToClass} variant='h4' >{group.name}</Link>}
+        action=
+        {a?(
+        <>
+        {
+          <IconButton onClick={onDelete}>
+            <DeleteIcon></DeleteIcon>
+          </IconButton>
+        }
+        </>
+      ):null}
        
         
       />

@@ -1,43 +1,55 @@
 import React from 'react';
-import { Typography } from '@mui/material';
+
 import {
-  AppBar, Box, Button, Link, Toolbar,
+  AppBar,
+  Button,
+  Tab,
+  Tabs,
+  Toolbar,
+  
 } from '@mui/material';
+import { useNavigate } from "react-router-dom";
+
+
 
 export default function Header() {
-  
+  const navigate = useNavigate();
+  const goToGroups = () => {
+    navigate(`/groups`);
+  };
 
   return (
    
-    <AppBar position="fixed">
-      <Toolbar>
-       
-        <Link
+    <React.Fragment>
+      <AppBar sx={{ background: "#063970" }}>
+        <Toolbar>
           
-          to="/"
-          variant="h5"
-          color="inherit"
-          underline="none"
-          noWrap
-        >
-          Home
-        </Link>
-        <Link
-          sx={{ marginLeft: 2 }}
           
-          to="/group"
-          variant="h5"
-          color="inherit"
-          underline="none"
-          noWrap
-        >
-          Group
-        </Link>
+            
+             
+              
+            
         
-        <div />
-        
-      </Toolbar>
-    </AppBar>
+          
+              <Tabs
+                sx={{ marginRight: "auto" }}
+                indicatorColor="secondary"
+                textColor="inherit"
+                
+                
+              >
+                <Tab label="Groups" onClick={goToGroups} />
+                
+              </Tabs>
+              <Button sx={{ marginLeft: "auto" }} variant="contained">
+                Logout
+              </Button>
+             
+            
+          
+        </Toolbar>
+      </AppBar>
+    </React.Fragment>
    
     
 

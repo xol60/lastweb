@@ -1,6 +1,7 @@
 import express from "express";
-import { addGroup } from "../controllers/group.js";
+import { addGroup,deleteGroup } from "../controllers/group.js";
 const router=express.Router();
 router.post('/',addGroup);
+router.post('/delete',deleteGroup);
 
 export default router;

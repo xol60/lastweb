@@ -1,5 +1,6 @@
 import { INIT_STATE } from '../../constant';
-import { getGroups, getType, createGroup, updateGroup } from '../actions';
+import { getGroups, getType, createGroup, deleteGroup } from '../actions';
+import { deleteG} from './function';
 
 export default function groupsReducers(state = INIT_STATE.groups, action) {
   switch (action.type) {
@@ -24,6 +25,15 @@ export default function groupsReducers(state = INIT_STATE.groups, action) {
         ...state,
         data: [...state.data, action.payload],
       };
+      case getType(deleteGroup.deleteGroupSuccess):
+        
+        state.data=deleteG(state.data,action.payload);
+        
+        return{
+          ...state,
+          data:[...state.data],
+          
+        };
     
     default:
       return state;

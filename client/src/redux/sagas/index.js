@@ -42,16 +42,6 @@ function* createPresentationSaga(action) {
     yield put(actions.createPresentation.createPresentationFailure(err));
   }
 }
-function* loginCustomerSaga(action) {
-  try {
-    const group = yield call(api.loginCustomer, action.payload);
-    console.log(action.payload)
-    yield put(actions.loginCustomer.loginCustomerSuccess(group.data));
-  } catch (err) {
-    console.error(err);
-    yield put(actions.createPresentation.createPresentationFailure(err));
-  }
-}
 function* fetchMembersSaga(action) {
   try {
     const members = yield call(api.fetchMembers,action.payload);
@@ -72,6 +62,17 @@ function* addMemberSaga(action) {
     yield put(actions.addMember.addMemberFailure(err));
   }
 }
+function* deleteGroupSaga(action) {
+  try {
+    
+    const group = yield call(api.deleteGroup, action.payload);
+   console.log(group.data)
+    yield put(actions.deleteGroup.deleteGroupSuccess(group.data));
+  } catch (err) {
+    console.error(err);
+    yield put(actions.deleteGroup.deleteGroupFailure(err));
+  }
+}
 
 
 
@@ -84,7 +85,8 @@ function* mySaga() {
   yield takeLatest(actions.getMembers.getMembersRequest,fetchMembersSaga);
   yield takeLatest(actions.addMember.addMemberRequest,addMemberSaga);
   yield takeLatest(actions.getPresentations.getPresentationsRequest, fetchPresentationsSaga);
-  yield takeLatest(actions.loginCustomer.loginCustomerRequest, loginCustomerSaga);
+  yield takeLatest(actions.deleteGroup.deleteGroupRequest,deleteGroupSaga);
+ 
 }
 
 // generator function ES6

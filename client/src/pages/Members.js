@@ -13,7 +13,7 @@ function Members(){
     const dispatch = useDispatch();
   const members = useSelector(membersState$);
   let id=useParams();
-  
+  const a=false;
   
 
   React.useEffect(() => {
@@ -24,7 +24,7 @@ function Members(){
   }, [dispatch]);
     return(
       <div>
-    <Header></Header>
+    
 		<Container  maxWidth='lg' >
         <div>
         <div class="Era2ub QRiHXd">
@@ -32,34 +32,10 @@ function Members(){
                 Members
             </h2>
         </div>
-        <table class="XNIQbd Oo2pXc">
-			<thead class="thead-dark">
-						    <tr>
-						      <th>ID no.</th>
-						      <th>First Name</th>
-						      <th>Last Name</th>
-						      <th>Email</th>
-						      <th>&nbsp;</th>
-						    </tr>
-			</thead>
-            <tbody>
-            {members.map((member) => (
-                <tr class="alert" role="alert">
-				<th scope="row">001</th>
-				<td>Mark</td>
-				<td>Otto</td>
-				<td>markotto@email.com</td>
-				<td>
-					<a href="#" class="close" data-dismiss="alert" aria-label="Close">
-				  <span aria-hidden="true"><i class="fa fa-close"></i></span>
-				</a>
-			  </td>
-			  </tr>
-                ))}
-            </tbody>
-
-        </table>
-		<AddMemberModal></AddMemberModal>
+      {a?(
+      <>
+     
+		  <AddMemberModal></AddMemberModal>
 		<div style={{position:'fixed',bottom:30,right:30}}><Fab
         color='primary'
         onClick={openAddMemberModal}
@@ -69,7 +45,10 @@ function Members(){
         <AddIcon />
       </Fab>
       </div>
+      </>
+      ):null}
         </div>
+        
 		</Container>
     </div>
 

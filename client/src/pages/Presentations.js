@@ -11,6 +11,7 @@ import PresentationList from '../components/PresentationList';
 import { useDispatch } from 'react-redux';
 import CreatePresentationModal from '../components/CreatePresentationModal';
 import { showPresentationModal } from '../redux/actions';
+import Header from '../components/Header';
 
 function Presentations() {
 
@@ -23,7 +24,7 @@ function Presentations() {
     return (
       <div className="app">
       <Container maxWidth='lg' >
-        
+        <Header></Header>
         <PresentationList />
         <CreatePresentationModal />
       <div style={{position:'fixed',bottom:30,right:30}}><Fab
