@@ -53,3 +53,8 @@ export const addMember = createActions({
   addMemberSuccess: (payload) => payload,
   addMemberFailure: (err) => err,
 });
+export const loginCustomer=createActions({
+  loginCustomerRequest:(payload)=>payload,
+  loginCustomerSuccess:(payload)=>payload,
+  loginCustomerFailure:(err)=>err,
+})

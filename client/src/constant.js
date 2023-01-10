@@ -21,5 +21,9 @@ export const INIT_STATE = {
       isLoading: false,
       data: [],
     },
+    customer:{
+      isLoading:false,
+      data:[]
+    }
     
   };

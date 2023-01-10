@@ -42,6 +42,16 @@ function* createPresentationSaga(action) {
     yield put(actions.createPresentation.createPresentationFailure(err));
   }
 }
+function* loginCustomerSaga(action) {
+  try {
+    const group = yield call(api.loginCustomer, action.payload);
+    console.log(action.payload)
+    yield put(actions.loginCustomer.loginCustomerSuccess(group.data));
+  } catch (err) {
+    console.error(err);
+    yield put(actions.createPresentation.createPresentationFailure(err));
+  }
+}
 function* fetchMembersSaga(action) {
   try {
     const members = yield call(api.fetchMembers,action.payload);
@@ -74,7 +84,7 @@ function* mySaga() {
   yield takeLatest(actions.getMembers.getMembersRequest,fetchMembersSaga);
   yield takeLatest(actions.addMember.addMemberRequest,addMemberSaga);
   yield takeLatest(actions.getPresentations.getPresentationsRequest, fetchPresentationsSaga);
- 
+  yield takeLatest(actions.loginCustomer.loginCustomerRequest, loginCustomerSaga);
 }
 
 // generator function ES6
