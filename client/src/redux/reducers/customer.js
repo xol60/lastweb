@@ -11,11 +11,18 @@ export default function membersReducers(state = INIT_STATE.customer, action) {
       };
     case getType(loginCustomer.loginCustomerSuccess):
         {
+          console.log(555);
+          console.log(action.payload)
+          if(action.payload.id)
+          {
 
+          
       return {
         ...state,
         isLoading: false,
+        
         info: action.payload,
+        }
       };
     }
     case getType(loginCustomer.loginCustomerFailure):

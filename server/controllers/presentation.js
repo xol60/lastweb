@@ -1,20 +1,18 @@
-import { Customer } from "../models/Customer.js";
+import { Presentation } from "../models/Presentation.js";
 export const addPresentation=async (req,res)=>{
     try {
         
-        const customer=new Customer({
+        const presentation=new Presentation({
             
             name:req.body.presentationname,
-            email:'req.body.email',
-            username:'req.body.username',
-            address:req.body.group_id,
+            id_customer:'',
+            id_group:req.body.group_id,
             lock:false,
-            password:'randomstring',
-            avatar:'https://scr.vn/wp-content/uploads/2020/07/avt-cute.jpg.webp',
+            
 
         });
-        await customer.save()
-        res.status(200).json(customer)
+        await presentation.save()
+        res.status(200).json(presentation)
     
         
         
@@ -26,10 +24,28 @@ export const addPresentation=async (req,res)=>{
 }
 export const getPresentation=async (req,res)=>{
     try {
-        const Customers=await Customer.find();
-        res.status(200).json(Customers);
+        const Presentations=await Presentation.find();
+        console.log(Presentations)
+        res.status(200).json(Presentations);
         
     } catch (err) {
         res.status(500).json({error:err});
     }
 }
+export const deletePresentation=async (req,res)=>{
+    try {
+        
+      console.log(req.body._id)
+      const presentation=await Presentation.find({_id:req.body._id})
+      const pre =  await Presentation.deleteOne({_id:req.body._id})
+    
+      res.status(200).json(presentation)
+    
+        
+        
+    
+        
+      } catch (err) {
+        res.status(500).json({ error: err });
+      }
+  }

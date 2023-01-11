@@ -1,3 +1,4 @@
+
 import { takeLatest, call, put } from 'redux-saga/effects';
 import * as actions from '../actions';
 import * as api from '../../api';
@@ -5,7 +6,7 @@ import * as api from '../../api';
 function* fetchGroupsSaga(action) {
   try {
     const groups = yield call(api.fetchGroups);
-    console.log(groups);
+    
     yield put(actions.getGroups.getGroupsSuccess(groups.data));
   } catch (err) {
     console.error(err);
@@ -42,16 +43,6 @@ function* createPresentationSaga(action) {
     yield put(actions.createPresentation.createPresentationFailure(err));
   }
 }
-function* loginCustomerSaga(action) {
-  try {
-    const group = yield call(api.loginCustomer, action.payload);
-    console.log(group)
-    yield put(actions.loginCustomer.loginCustomerSuccess(group.data));
-  } catch (err) {
-    console.error(err);
-    yield put(actions.createPresentation.createPresentationFailure(err));
-  }
-}
 function* fetchMembersSaga(action) {
   try {
     const members = yield call(api.fetchMembers,action.payload);
@@ -60,6 +51,49 @@ function* fetchMembersSaga(action) {
   } catch (err) {
     console.error(err);
     yield put(actions.getMembers.getMembersFailure(err));
+  }
+}
+function* addMemberSaga(action) {
+  try {
+    const member = yield call(api.addMember, action.payload);
+    console.log(action.payload)
+    yield put(actions.addMember.addMemberSuccess(member.data));
+  } catch (err) {
+    console.error(err);
+    yield put(actions.addMember.addMemberFailure(err));
+  }
+}
+function* deleteGroupSaga(action) {
+  try {
+    
+    const group = yield call(api.deleteGroup, action.payload);
+   
+    yield put(actions.deleteGroup.deleteGroupSuccess(group.data));
+  } catch (err) {
+    console.error(err);
+    yield put(actions.deleteGroup.deleteGroupFailure(err));
+  }
+}
+function* deleteMemberSaga(action) {
+  try {
+    
+    const member = yield call(api.deleteMember, action.payload);
+   
+    yield put(actions.deleteMember.deleteMemberSuccess(member.data));
+  } catch (err) {
+    console.error(err);
+    yield put(actions.deleteMember.deleteMemberFailure(err));
+  }
+}
+function* deletePresentationSaga(action) {
+  try {
+    
+    const presentation = yield call(api.deletePresentation, action.payload);
+   
+    yield put(actions.deletePresentation.deletePresentationSuccess(presentation.data));
+  } catch (err) {
+    console.error(err);
+    yield put(actions.deletePresentation.deletePresentationFailure(err));
   }
 }
 function* fetchSlidersSaga(action) {
@@ -73,14 +107,14 @@ function* fetchSlidersSaga(action) {
   }
 }
 
-function* addMemberSaga(action) {
+function* loginCustomerSaga(action) {
   try {
-    const member = yield call(api.addMember, action.payload);
-    console.log(action.payload)
-    yield put(actions.addMember.addMemberSuccess(member.data));
+    const group = yield call(api.loginCustomer, action.payload);
+    console.log(group)
+    yield put(actions.loginCustomer.loginCustomerSuccess(group.data));
   } catch (err) {
     console.error(err);
-    yield put(actions.addMember.addMemberFailure(err));
+    yield put(actions.createPresentation.createPresentationFailure(err));
   }
 }
 function* addSliderSaga(action) {
@@ -107,16 +141,19 @@ function* updateSliderSaga(action) {
 
 function* mySaga() {
   yield takeLatest(actions.getGroups.getGroupsRequest, fetchGroupsSaga);
-  yield takeLatest(actions.getSliders.getSlidersRequest, fetchSlidersSaga);
+
   yield takeLatest(actions.createGroup.createGroupRequest, createGroupSaga);
   yield takeLatest(actions.createPresentation.createPresentationRequest, createPresentationSaga);
   yield takeLatest(actions.getMembers.getMembersRequest,fetchMembersSaga);
-
   yield takeLatest(actions.addMember.addMemberRequest,addMemberSaga);
-  yield takeLatest(actions.addSlider.addSliderRequest,addSliderSaga);
-  yield takeLatest(actions.updateSlider.updateSliderRequest,updateSliderSaga);
   yield takeLatest(actions.getPresentations.getPresentationsRequest, fetchPresentationsSaga);
-  yield takeLatest(actions.loginCustomer.loginCustomerRequest, loginCustomerSaga);
+  yield takeLatest(actions.deleteGroup.deleteGroupRequest,deleteGroupSaga);
+  yield takeLatest(actions.deleteMember.deleteMemberRequest,deleteMemberSaga);
+  yield takeLatest(actions.deletePresentation.deletePresentationRequest,deletePresentationSaga);
+   yield takeLatest(actions.loginCustomer.loginCustomerRequest, loginCustomerSaga);
+   yield takeLatest(actions.addSlider.addSliderRequest,addSliderSaga);
+   yield takeLatest(actions.updateSlider.updateSliderRequest,updateSliderSaga);
+   yield takeLatest(actions.getSliders.getSlidersRequest, fetchSlidersSaga);
 }
 
 // generator function ES6

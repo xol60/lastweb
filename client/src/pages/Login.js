@@ -23,12 +23,13 @@ function Login(){
     }
     
     const handleSubmit=React.useEffect(() => {
-        dispatch(loginCustomer.loginCustomerRequest(data));
-        console.log(info)
         if(info.id)
         {
                 navigate('/groups');
         }
+        dispatch(loginCustomer.loginCustomerRequest(data));
+        console.log(info)
+
       }, [dispatch,data]);
     return(
         <div className="app">

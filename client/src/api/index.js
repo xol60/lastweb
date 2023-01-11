@@ -15,3 +15,6 @@ export const fetchPresentations=()=>axios.get(`${URL}/presentations`);
 
 export const addSlider=(payload,id)=>axios.post(`${URL}/slider/${id}/add`,payload)
 export const updateSlider=(payload,id)=>axios.put(`${URL}/slider/${id}/update`,payload)
+export const deleteGroup=(payload)=>axios.post(`${URL}/groups/delete`, payload);
+export const deleteMember=(payload)=>axios.post(`${URL}/members/delete`, payload);
+export const deletePresentation=(payload)=>axios.post(`${URL}/presentations/delete`, payload);

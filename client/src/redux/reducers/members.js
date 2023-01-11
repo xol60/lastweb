@@ -1,5 +1,6 @@
 import { INIT_STATE } from '../../constant';
-import { getMembers, getType, addMember } from '../actions';
+import { getMembers, getType, addMember,deleteMember } from '../actions';
+import { deleteG} from './function';
 
 export default function membersReducers(state = INIT_STATE.members, action) {
   switch (action.type) {
@@ -24,6 +25,15 @@ export default function membersReducers(state = INIT_STATE.members, action) {
         return {
           ...state,
           data: [...state.data, action.payload],
+        };
+        case getType(deleteMember.deleteMemberSuccess):
+        
+        state.data=deleteG(state.data,action.payload);
+        
+        return{
+          ...state,
+          data:[...state.data],
+          
         };
     
     

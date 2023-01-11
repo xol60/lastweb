@@ -1,4 +1,3 @@
-
 import mongoose from "mongoose";
 const schema = new mongoose.Schema
 
@@ -6,8 +5,11 @@ const schema = new mongoose.Schema
 ({
 
   
-  name:{type:String},
+  
   lock:{type:Boolean},
+  id_group:{type:String},
+  name:{type:String},
+  id_customer:{type:String},
   
   
 

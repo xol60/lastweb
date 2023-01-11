@@ -1,9 +1,12 @@
 import { Customer } from "../models/Customer.js";
+
+import { GroupDetail } from "../models/GroupDetail.js";
 export const getMembers=async (req,res)=>{
     try {
         console.log(req.body)
-        const Customers=await Customer.find({email:'req.body.email'});
-        res.status(200).json(Customers);
+       
+        const Members=await GroupDetail.find({id_group:req.body.id});
+        res.status(200).json(Members);
         
     } catch (err) {
         res.status(500).json({error:err});
@@ -11,21 +14,41 @@ export const getMembers=async (req,res)=>{
 }
 export const addMember=async(req,res)=>{
     try{
-        const customer=new Customer({
+        const customer=await Customer.find({email:req.body.email})
+        if(customer.length!=0){
+        const member=new GroupDetail({
             
-            name:req.body.email,
-            email:'req.body.email',
-            username:'req.body.username',
-            address:'',
-            lock:false,
-            password:'randomstring',
-            avatar:'https://scr.vn/wp-content/uploads/2020/07/avt-cute.jpg.webp',
+           
+            id_customer:'',
+            id_group:req.body.group_id,
+            name:'Trần Văn A',
+            role:req.body.role,
+            lock:false
 
         });
-        await customer.save()
-        res.status(200).json(customer)
+        await member.save()
+        res.status(200).json(member)}
+        else
+            res.status(500).json([]);
 
     }catch(err){
         res.status(500).json({ error: err });
     }
 }
+export const deleteMember=async (req,res)=>{
+    try {
+        
+      console.log(req.body._id)
+      const member=await GroupDetail.find({_id:req.body._id})
+      const mem =  await GroupDetail.deleteOne({_id:req.body._id})
+      console.log(member)
+      res.status(200).json(member)
+    
+        
+        
+    
+        
+      } catch (err) {
+        res.status(500).json({ error: err });
+      }
+  }
