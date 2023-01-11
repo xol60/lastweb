@@ -1,4 +1,3 @@
-
 import { takeLatest, call, put } from 'redux-saga/effects';
 import * as actions from '../actions';
 import * as api from '../../api';
@@ -99,11 +98,11 @@ function* deletePresentationSaga(action) {
 function* fetchSlidersSaga(action) {
   try {
     const groups = yield call(api.fetchSliders);
-    console.log(groups.data)
-    yield put(actions.getGroups.getGroupsSuccess(groups.data));
+
+    yield put(actions.getSliders.getSlidersSuccess(groups.data));
   } catch (err) {
     console.error(err);
-    yield put(actions.getGroups.getGroupsFailure(err));
+    yield put(actions.getSliders.getSlidersFailure(err));
   }
 }
 
@@ -139,6 +138,9 @@ function* updateSliderSaga(action) {
   }
 }
 
+
+
+
 function* mySaga() {
   yield takeLatest(actions.getGroups.getGroupsRequest, fetchGroupsSaga);
 
@@ -150,10 +152,12 @@ function* mySaga() {
   yield takeLatest(actions.deleteGroup.deleteGroupRequest,deleteGroupSaga);
   yield takeLatest(actions.deleteMember.deleteMemberRequest,deleteMemberSaga);
   yield takeLatest(actions.deletePresentation.deletePresentationRequest,deletePresentationSaga);
-   yield takeLatest(actions.loginCustomer.loginCustomerRequest, loginCustomerSaga);
-   yield takeLatest(actions.addSlider.addSliderRequest,addSliderSaga);
-   yield takeLatest(actions.updateSlider.updateSliderRequest,updateSliderSaga);
-   yield takeLatest(actions.getSliders.getSlidersRequest, fetchSlidersSaga);
+  yield takeLatest(actions.loginCustomer.loginCustomerRequest, loginCustomerSaga);
+  yield takeLatest(actions.addSlider.addSliderRequest,addSliderSaga);
+  yield takeLatest(actions.updateSlider.updateSliderRequest,updateSliderSaga);
+  yield takeLatest(actions.getSliders.getSlidersRequest, fetchSlidersSaga);
+
+ 
 }
 
 // generator function ES6

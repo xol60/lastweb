@@ -1,15 +1,13 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import dotenv from 'dotenv'
 import customers from './routers/customers.js'
 import mongoose from 'mongoose';
+import dotenv from 'dotenv'
 import groups from './routers/groups.js'
 import members from './routers/members.js'
-import sliders from './routers/sliders.js'
 import presentations from './routers/presentations.js'
-import http from 'http'
-import {Server} from 'socket.io'
+import sliders from './routers/sliders.js'
 dotenv.config();
 const URI=process.env.MONGO_URL;
 
@@ -25,34 +23,6 @@ app.use('/groups',groups)
 app.use('/members',members)
 app.use('/presentations',presentations)
 app.use('/slider',sliders)
-const server = http.createServer(app);
-const io = new Server(server, {
-    cors: {
-      origin: "http://localhost:3000",
-      methods: ["GET", "POST"],
-    },
-  });
-  
-  io.on("connection", (socket) => {
-    console.log(`User Connected: ${socket.id}`);
-  
-    socket.on("join_room", (data) => {
-      socket.join(data);
-      console.log(`User with ID: ${socket.id} joined room: ${data}`);
-    });
-  
-    socket.on("send_message", (data) => {
-      socket.to(data.room).emit("receive_message", data);
-    });
-  
-    socket.on("disconnect", () => {
-      console.log("User Disconnected", socket.id);
-    });
-  });
-  
-  server.listen(3001, () => {
-    console.log("SERVER RUNNING");
-  });
 mongoose.connect(URI,{useNewUrlParser:true,useUnifiedTopology:true})
     .then(()=>{
         app.listen(PORT,()=>{

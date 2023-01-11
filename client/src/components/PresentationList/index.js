@@ -15,7 +15,7 @@ export default function PresentationList() {
   
   presentations=check(presentations,data.id);
   
-
+  console.log(presentations)
   React.useEffect(() => {
     dispatch(actions.getPresentations.getPresentationsRequest());
   }, [dispatch]);
@@ -23,7 +23,7 @@ export default function PresentationList() {
   return (
     <Grid container spacing={2} alignItems='stretch'>
       {presentations.map((presentation) => (
-        <Grid key={presentation._id} item xs={12} sm={6    }>
+        <Grid key={presentation._id} item xs={12} sm={12    }>
           <Presentation presentation={presentation} />
         </Grid>
       ))}

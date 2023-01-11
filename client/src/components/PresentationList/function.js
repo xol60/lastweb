@@ -5,7 +5,7 @@ export function check(datas,id)
     {
     
 
-        if(datas[i].address==id)
+        if(datas[i].id_group==id)
         {
             list.push(datas[i])
         }

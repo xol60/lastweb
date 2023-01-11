@@ -32,6 +32,21 @@ export const updateGroup = createActions({
   updateGroupSuccess: (payload) => payload,
   updateGroupFailure: (err) => err,
 });
+export const deleteGroup = createActions({
+  deleteGroupRequest: (payload) => payload,
+  deleteGroupSuccess: (payload) => payload,
+  deleteGroupFailure: (err) => err,
+});
+export const deleteMember = createActions({
+  deleteMemberRequest: (payload) => payload,
+  deleteMemberSuccess: (payload) => payload,
+  deleteMemberFailure: (err) => err,
+});
+export const deletePresentation = createActions({
+  deletePresentationRequest: (payload) => payload,
+  deletePresentationSuccess: (payload) => payload,
+  deletePresentationFailure: (err) => err,
+});
 
 export const showModal = createAction('SHOW_CREATE_GROUP_MODAL');
 export const hideModal = createAction('HIDE_CREATE_GROUP_MODAL');
@@ -72,19 +87,4 @@ export const loginCustomer=createActions({
   loginCustomerRequest:(payload)=>payload,
   loginCustomerSuccess:(payload)=>payload,
   loginCustomerFailure:(err)=>err,
-})
-export const deleteGroup = createActions({
-  deleteGroupRequest: (payload) => payload,
-  deleteGroupSuccess: (payload) => payload,
-  deleteGroupFailure: (err) => err,
-});
-export const deleteMember = createActions({
-  deleteMemberRequest: (payload) => payload,
-  deleteMemberSuccess: (payload) => payload,
-  deleteMemberFailure: (err) => err,
-});
-export const deletePresentation = createActions({
-  deletePresentationRequest: (payload) => payload,
-  deletePresentationSuccess: (payload) => payload,
-  deletePresentationFailure: (err) => err,
 });
