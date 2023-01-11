@@ -11,10 +11,6 @@ export const memberModalState$=(state)=>state.memberModal;
 
 
 export const presentationModalStates$=(state)=>state.presentationModal;
-
 export const customerState$=(state) => state.customer;
 
 export const slidersState$ = (state) => state.sliders.data;
-
-
-

@@ -5,7 +5,7 @@ export const addPresentation=async (req,res)=>{
         const presentation=new Presentation({
             
             name:req.body.presentationname,
-            id_customer:'',
+            id_customer:req.body.customer_id,
             id_group:req.body.group_id,
             lock:false,
             

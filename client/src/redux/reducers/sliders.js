@@ -13,7 +13,6 @@ export default function groupsReducers(state = INIT_STATE.sliders, action) {
     }
     case getType(getSliders.getSlidersSuccess):
       {
-        console.log(action.payload);
       return {
         ...state,
         isLoading:false,

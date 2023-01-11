@@ -7,11 +7,13 @@ import { presentationModalStates$ } from '../../redux/selectors';
 import { createPresentation, hidePresentationModal } from '../../redux/actions';
 import { spacing } from '@mui/system';
 import { useParams } from 'react-router-dom';
+import { customerState$ } from '../../redux/selectors';
 export default function CreatePresentationModal() {
+  let i=useSelector(customerState$)
   const [data, setData] = React.useState({
     presentationname: '',
-    group_id:''
-    
+    group_id:'',
+    customer_id:''
   });
   const dispatch = useDispatch();
   const { isShow } = useSelector(presentationModalStates$);
@@ -21,7 +23,8 @@ export default function CreatePresentationModal() {
     dispatch(hidePresentationModal());
     setData({
     presentationname: '',
-    group_id:''
+    group_id:'',
+    customer_id:''
       
     });
   }, [dispatch]);
@@ -29,6 +32,7 @@ export default function CreatePresentationModal() {
   
   const onSubmit = React.useCallback(() => {
     data.group_id=params.id
+    data.customer_id=i.info.id
     dispatch(createPresentation.createPresentationRequest(data));
     onClose();
   }, [data, dispatch, onClose]);

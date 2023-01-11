@@ -1,20 +1,27 @@
 import React from 'react'
 import './styles.css'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch,useSelector} from 'react-redux';
 import * as actions from '../redux/actions';
-import { membersState$ } from '../redux/selectors';
+
 import {useParams} from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add'
 import { Container, Fab } from '@mui/material';
 import { showMemberModal } from '../redux/actions';
 import AddMemberModal from '../components/AddMemberModal';
+import MemberList from '../components/MemberList';
 import Header from '../components/Header';
+import { customerState$ } from '../redux/selectors';
+import { membersState$ } from '../redux/selectors';
+import { candeleteM } from '../components/MemberList/function';
+
 function Members(){
     const dispatch = useDispatch();
-  const members = useSelector(membersState$);
+  
   let id=useParams();
   
-  
+  let i=useSelector(customerState$);
+  let members=useSelector(membersState$);
+  const a=candeleteM(members,i.info.id,id.id)
 
   React.useEffect(() => {
     dispatch(actions.getMembers.getMembersRequest(id));
@@ -23,8 +30,9 @@ function Members(){
     dispatch(showMemberModal());
   }, [dispatch]);
     return(
-      <div>
-    <Header></Header>
+      
+      <div  className='app'>
+  <Header></Header>
 		<Container  maxWidth='lg' >
         <div>
         <div class="Era2ub QRiHXd">
@@ -32,34 +40,11 @@ function Members(){
                 Members
             </h2>
         </div>
-        <table class="XNIQbd Oo2pXc">
-			<thead class="thead-dark">
-						    <tr>
-						      <th>ID no.</th>
-						      <th>First Name</th>
-						      <th>Last Name</th>
-						      <th>Email</th>
-						      <th>&nbsp;</th>
-						    </tr>
-			</thead>
-            <tbody>
-            {members.map((member) => (
-                <tr class="alert" role="alert">
-				<th scope="row">001</th>
-				<td>Mark</td>
-				<td>Otto</td>
-				<td>markotto@email.com</td>
-				<td>
-					<a href="#" class="close" data-dismiss="alert" aria-label="Close">
-				  <span aria-hidden="true"><i class="fa fa-close"></i></span>
-				</a>
-			  </td>
-			  </tr>
-                ))}
-            </tbody>
-
-        </table>
-		<AddMemberModal></AddMemberModal>
+        <MemberList />
+      {a?(
+      <>
+     
+		  <AddMemberModal></AddMemberModal>
 		<div style={{position:'fixed',bottom:30,right:30}}><Fab
         color='primary'
         onClick={openAddMemberModal}
@@ -69,7 +54,10 @@ function Members(){
         <AddIcon />
       </Fab>
       </div>
+      </>
+      ):null}
         </div>
+        
 		</Container>
     </div>
 

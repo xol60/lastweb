@@ -1,11 +1,13 @@
 import { Customer } from "../models/Customer.js";
+import { Group } from "../models/Group.js";
 
 import { GroupDetail } from "../models/GroupDetail.js";
 export const getMembers=async (req,res)=>{
     try {
-        console.log(req.body)
+        
        
-        const Members=await GroupDetail.find({id_group:req.body.id});
+        const Members=await GroupDetail.find({});
+        console.log(Members)
         res.status(200).json(Members);
         
     } catch (err) {
@@ -19,17 +21,33 @@ export const addMember=async(req,res)=>{
         const member=new GroupDetail({
             
            
-            id_customer:'',
+            id_customer:customer[0]._id,
             id_group:req.body.group_id,
-            name:'Trần Văn A',
+            name:customer[0].name,
             role:req.body.role,
             lock:false
 
         });
         await member.save()
         res.status(200).json(member)}
-        else
-            res.status(500).json([]);
+        if(req.body.role=='Owner')
+        {
+            let group=await Group.find({})
+            let cus=await Customer.findOne({_id:req.body.id_customer})
+
+            const member=new GroupDetail({
+            
+           
+                id_customer:req.body.id_customer,
+                id_group:group[group.length-1]._id,
+                name:cus.name,
+                role:req.body.role,
+                lock:false
+    
+            });
+            await member.save()
+            res.status(200).json(member)
+        }
 
     }catch(err){
         res.status(500).json({ error: err });

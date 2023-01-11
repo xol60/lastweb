@@ -12,11 +12,14 @@ import {
   Typography,
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { customerState$,membersState$ } from '../../../redux/selectors';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 
 import { useNavigate } from "react-router-dom";
 import { deleteGroup } from '../../../redux/actions';
+import { canDelete } from '../function';
+
 
 export default function Group({ group }) {
   
@@ -26,7 +29,11 @@ export default function Group({ group }) {
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const a=true;
+  let i=useSelector(customerState$);
+  let members=useSelector(membersState$);
+  
+  let a=canDelete(members,i.info.id,group._id)
+
   const goToClass = () => {
     navigate(`/${group._id}`);
   };

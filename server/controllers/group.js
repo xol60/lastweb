@@ -15,16 +15,7 @@ export const addGroup=async (req,res)=>{
         
         res.status(200).json(group)
     
-        const member=new GroupDetail({
-          id_customer:'',
-          
-          name:'Trần Văn B',
-          id_group:group._id,
-          role:'Owner',
-          lock:false,
-
-        })
-        await member.save()
+        
         
     
         

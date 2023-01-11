@@ -3,7 +3,7 @@ import { StrictMode } from "react";
 import React,{useState} from 'react';
 import Header from '../components/Presentation/Detail/Header'
 import Step from '../components/Presentation/Detail/List'
-import "./style.css";
+
 import { useDispatch, useSelector } from 'react-redux';
 import {getSliders} from '../redux/actions'
 import { slidersState$ } from '../redux/selectors';
@@ -14,12 +14,15 @@ function Presentation(){
     const sliders = useSelector(slidersState$);
     React.useEffect(() => {
       dispatch(getSliders.getSlidersRequest());
-      console.log(sliders);
+
     }, [dispatch]);
+    console.log(sliders);
     return (
         <div className="App" >
           <Header></Header>
-          
+          <div className="container">
+            <Step currentIndex={3}/>
+            </div>
     </div>
 
     )

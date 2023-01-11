@@ -5,10 +5,9 @@ import members from'./members';
 import presentations from'./presentations';
 import memberModal from './memberModal.js';
 import presentationModal from './presentationModal.js';
-import customer from './customer'
-
-import sliders from'./sliders'
+import customer from './customer';
+import slider from './sliders'
 export default combineReducers({
-  groups,modal,members,memberModal,presentations,presentationModal,customer,sliders
+  groups,modal,members,memberModal,presentations,presentationModal,slider,customer
 
 });

@@ -6,12 +6,14 @@ import * as actions from '../../redux/actions';
 import Member from './Member';
 import { membersState$ } from '../../redux/selectors';
 import { useParams } from 'react-router-dom';
+import { checkM } from './function';
 export default function MemberList() {
   const dispatch = useDispatch();
-  const members = useSelector(membersState$);
-  let id=useParams();
+  let members = useSelector(membersState$);
+  let i=useParams();
+  members=checkM(members,i)
   React.useEffect(() => {
-    dispatch(actions.getMembers.getMembersRequest(id));
+    dispatch(actions.getMembers.getMembersRequest());
   }, [dispatch]);
 
   return (

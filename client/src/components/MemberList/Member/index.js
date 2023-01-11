@@ -13,9 +13,12 @@ import {
 import DeleteIcon from '@mui/icons-material/Delete';
 
 import { useDispatch } from 'react-redux';
-
+import { useSelector } from 'react-redux';
+import { customerState$,membersState$ } from '../../../redux/selectors';
 
 import { deleteMember } from '../../../redux/actions';
+import { useParams } from 'react-router-dom';
+import { candeleteM } from '../function';
 
 export default function Member({ member }) {
   
@@ -24,9 +27,13 @@ export default function Member({ member }) {
     
   });
   const dispatch = useDispatch();
-  
-  
-  const a=true;
+  let params=useParams();
+  let i=useSelector(customerState$);
+  let members=useSelector(membersState$);
+  let a=candeleteM(members,i.info.id,params.id)
+  if(member.role==="Owner"){
+    a=false
+  }
   
   const onDelete = React.useCallback(() => {
    

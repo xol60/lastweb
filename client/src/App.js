@@ -5,9 +5,11 @@ import Members from './pages/Members';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Groups from './pages/Groups';
-import ChatBox from '../src/components/Chatbox'
+
 import Presentations from './pages/Presentations';
 import Presentation from './pages/Presentation';
+import GroupDetail from './pages/GroupDetail';
+
 
 
 function App() {
@@ -20,7 +22,8 @@ function App() {
         <Route path="/login"element={<Login/>}/>
         <Route path="/:id/members"element={<Members/>}/>
         <Route path="/:id/presentation"element={<Presentation/>}/>
-        <Route path="/chatbox"element={<ChatBox/>}/>
+        <Route path="/:id"element={<GroupDetail></GroupDetail>}></Route>
+        
       </Routes>
     </div>
 

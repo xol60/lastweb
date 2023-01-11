@@ -4,14 +4,22 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as actions from '../../redux/actions';
 
 import Group from './Group';
-import { groupsState$ } from '../../redux/selectors';
+import { groupsState$, membersState$ } from '../../redux/selectors';
+import { customerState$ } from '../../redux/selectors';
+import { checkF } from './function';
 
 export default function GroupList() {
   const dispatch = useDispatch();
-  const groups = useSelector(groupsState$);
+  let groups = useSelector(groupsState$);
+  let i=useSelector(customerState$);
+  let members=useSelector(membersState$);
+  console.log(i)
+  groups=checkF(groups,i.info.id,members)
+  
 
   React.useEffect(() => {
     dispatch(actions.getGroups.getGroupsRequest());
+    dispatch(actions.getMembers.getMembersRequest());
   }, [dispatch]);
 
   return (
