@@ -15,6 +15,7 @@ function Login(){
     const navigate = useNavigate();
     const [alert,setAlert]=useState(null);
     const {info}=useSelector(customerState$)
+    
     const AlertMessage=({info})=>{
         return info===null?null:(
             <Alert variant={info.type}>{info.message}</Alert>

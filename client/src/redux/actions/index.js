@@ -53,6 +53,21 @@ export const addMember = createActions({
   addMemberSuccess: (payload) => payload,
   addMemberFailure: (err) => err,
 });
+export const addSlider = createActions({
+  addSliderRequest: (payload) => payload,
+  addSliderSuccess: (payload) => payload,
+  addSliderFailure: (err) => err,
+});
+export const getSliders = createActions({
+  getSlidersRequest: undefined,
+  getSlidersSuccess: (payload) => payload,
+  getSlidersFailure: (err) => err,
+});
+export const updateSlider = createActions({
+  updateSliderRequest: (payload) => payload,
+  updateSliderSuccess: (payload) => payload,
+  updateSliderFailure: (err) => err,
+});
 export const loginCustomer=createActions({
   loginCustomerRequest:(payload)=>payload,
   loginCustomerSuccess:(payload)=>payload,

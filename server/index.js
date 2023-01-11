@@ -6,6 +6,7 @@ import customers from './routers/customers.js'
 import mongoose from 'mongoose';
 import groups from './routers/groups.js'
 import members from './routers/members.js'
+import sliders from './routers/sliders.js'
 import presentations from './routers/presentations.js'
 import http from 'http'
 import {Server} from 'socket.io'
@@ -23,6 +24,7 @@ app.use('/customers',customers)
 app.use('/groups',groups)
 app.use('/members',members)
 app.use('/presentations',presentations)
+app.use('/slider',sliders)
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {

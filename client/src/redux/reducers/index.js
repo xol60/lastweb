@@ -6,7 +6,9 @@ import presentations from'./presentations';
 import memberModal from './memberModal.js';
 import presentationModal from './presentationModal.js';
 import customer from './customer'
+
+import sliders from'./sliders'
 export default combineReducers({
-  groups,modal,members,memberModal,presentations,presentationModal,customer,
+  groups,modal,members,memberModal,presentations,presentationModal,customer,sliders
 
 });

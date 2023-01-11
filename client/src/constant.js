@@ -24,6 +24,10 @@ export const INIT_STATE = {
     customer:{
       isLoading:false,
       info:[]
-    }
+    },
+    sliders:{
+      isLoading:false,
+      data:[],
+    },
     
   };
